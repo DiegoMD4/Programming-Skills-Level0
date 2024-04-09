@@ -25,14 +25,14 @@ namespace Level_0.Banking_System
                     Console.ReadKey();
                     break;
                 case 3:
-                    Program.Main();
+                    ProgramMenu();
                     break;
                 default:
                     Console.WriteLine("Invalid Option try again...");
                     break;
             }
         }
-            static void RegisterNewUser()
+        static void RegisterNewUser()
         {
             Console.WriteLine("Write an username: ");
             string? nombre = Console.ReadLine();

@@ -19,7 +19,7 @@ namespace Level_0.Currency_Converter
                     Environment.Exit(0);
                     break;
                  default: Console.WriteLine("EXIT");
-                    Program.Main();
+                    ProgramMenu();
                     break;
             }
         }

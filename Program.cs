@@ -5,34 +5,44 @@ namespace Level_0.Mainthread
 {
     class Program
     {
-        public static void Main()
+        static void Main(string[] args)
         {
+            ProgramMenu();
+        }
+
+        public static void ProgramMenu() {
             string[] MenuOptions = { "Banking system", "Currency converter", "University enrollment", "Online shipment", "Finance management", "Exit" };
             switch (ShowMenu(MenuOptions, ConsoleColor.Gray))
             {
-                case 0: Bank.BankMain();
+                case 0:
+                    Bank.BankMain();
                     break;
-                case 1: Currency.CurrencyMain();
+                case 1:
+                    Currency.CurrencyMain();
                     break;
-                    case 2: Console.WriteLine("University enrollment");
+                case 2:
+                    Console.WriteLine("University enrollment");
                     break;
-                case 3: Console.WriteLine("Online Shipment");
+                case 3:
+                    Console.WriteLine("Online Shipment");
                     break;
-                case 4: Console.WriteLine("Financial managment");
+                case 4:
+                    Console.WriteLine("Financial managment");
                     break;
-                case 5: Console.WriteLine("Closing Program System");
+                case 5:
+                    Console.WriteLine("Closing Program System");
                     Environment.Exit(0);
                     break;
-                default: Console.WriteLine("Select a valid option please");
+                default:
+                    Console.WriteLine("Select a valid option please");
                     break;
             }
-
         }
 
         //overload of showMenu for using in clases 
         public static int ShowMenu(string [] MenuOptions, ConsoleColor Color)
         {
-            Console.CursorVisible = false;
+            Console.CursorVisible = true;
             ConsoleKeyInfo keyInfo;
             int SelectedOption = 0;
 
@@ -45,11 +55,14 @@ namespace Level_0.Mainthread
                 {
                     if (item == SelectedOption)
                     {
+                     
                         Console.BackgroundColor = Color;
                         Console.ForegroundColor = ConsoleColor.Black;
+                        //Console.Write($"->");
+
                     }
 
-                    Console.WriteLine($"- {MenuOptions[item]}");
+                    Console.WriteLine($"-{MenuOptions[item]}");
 
                     // Reset colors
                     Console.ResetColor();
