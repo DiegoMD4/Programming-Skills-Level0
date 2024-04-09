@@ -1,0 +1,4 @@
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.AssemblyInfoInputs.cache
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.AssemblyInfo.cs
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.csproj.CoreCompileInputs.cache
