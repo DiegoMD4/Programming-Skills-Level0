@@ -2,3 +2,14 @@ C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Le
 C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.AssemblyInfoInputs.cache
 C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.AssemblyInfo.cs
 C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.csproj.CoreCompileInputs.cache
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\bin\Debug\net6.0\Level_0.exe
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\bin\Debug\net6.0\Level_0.deps.json
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\bin\Debug\net6.0\Level_0.runtimeconfig.json
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\bin\Debug\net6.0\Level_0.dll
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\bin\Debug\net6.0\Level_0.pdb
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.sourcelink.json
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.dll
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\refint\Level_0.dll
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.pdb
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\Level_0.genruntimeconfig.cache
+C:\Projects_dev\VS Studio-C++\Nueva carpeta\Repos C#\Level_0\obj\Debug\net6.0\ref\Level_0.dll
