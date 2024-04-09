@@ -2,108 +2,93 @@
 
 namespace Level_0.Banking_System
 {
-    class Bank
+    class Bank: Program
     {
 
         static List<Usuario> usuarios = new List<Usuario>();
         static Usuario usuarioActual;
         public static void BankMain()
         {
-            while (true)
+            string[] BankMenu = { "Register New User", "Log In", "Display Users", "Exit to Programs menu" };
+
+            switch (ShowMenu(BankMenu, ConsoleColor.Red))
             {
-                Menu();
-            }
-        }
-
-        public static void Menu()
-        {
-            Console.Clear();
-
-            Console.WriteLine("----- Menú -----");
-            Console.WriteLine("1. Registrar nuevo usuario");
-            Console.WriteLine("2. Iniciar sesión");
-            Console.WriteLine("3. Ver usuarios");
-            Console.WriteLine("4. Salir");
-            Console.Write("Seleccione una opción: ");
-
-            string opcion = Console.ReadLine();
-
-            switch (opcion)
-            {
-                case "1":
-                    RegistrarNuevoUsuario();
+                case 0:
+                    RegisterNewUser();
                     break;
-                case "2":
-                    IniciarSesion();
+                case 1:
+                    Login();
                     Console.ReadKey();
                     break;
-                case "3":
-                    VerUsuarios();
+                case 2:
+                    DisplayUsers();
                     Console.ReadKey();
                     break;
-                case "4":
-                    Program.ShowMenu();
+                case 3:
+                    Program.Main();
                     break;
                 default:
-                    Console.WriteLine("Opción no válida. Intente nuevamente.");
+                    Console.WriteLine("Invalid Option try again...");
                     break;
             }
         }
-        static void RegistrarNuevoUsuario()
+            static void RegisterNewUser()
         {
-            Console.WriteLine("Escriba un nombre de usuario: ");
+            Console.WriteLine("Write an username: ");
             string? nombre = Console.ReadLine();
 
-            Console.WriteLine("Escriba un nombre de contraseña: ");
+            Console.WriteLine("Choose your password: ");
             string? contrasena = Console.ReadLine();
 
             Usuario nuevoUsuario = new Usuario(nombre, contrasena);
             usuarios.Add(nuevoUsuario);
 
-            Menu();
+            Console.WriteLine("Succesfully registered!");
+            Console.ReadKey();
+            BankMain();
         }
 
-        static void IniciarSesion()
+        static void Login()
         {
-            Console.Write("Ingrese su nombre de usuario: ");
+            Console.Write("Username: ");
             string nombre = Console.ReadLine();
 
-            Console.Write("Ingrese su contraseña: ");
+            Console.Write("Password: ");
             string contrasena = Console.ReadLine();
 
             Usuario usuario = usuarios.Find(u => u.Nombre == nombre && u.Contrasena == contrasena);
 
             if (usuario != null)
             {
-                Console.WriteLine($"Bienvenido: {usuario.Nombre}");
+                Console.WriteLine($"Welcome to your bank account: {usuario.Nombre}");
                 usuarioActual = usuario;
-                Usuario.MostrarMenuOperaciones(usuario, usuarios);
+                Usuario.UsersMenu(usuario, usuarios);
             }
             else
             {
-                Console.WriteLine("Usuario o contraseña incorrectos");
+                Console.WriteLine("Incorrect username or password try again...");
+                BankMain();
             }
         }
 
-        static void VerUsuarios()
+        static void DisplayUsers()
         {
             if (usuarios.Count > 0)
             {
                 foreach (var user in usuarios)
                 {
-                    Console.WriteLine($"Usuario: {user.Nombre}");
+                    Console.WriteLine($"User: {user.Nombre}");
                 }
 
             }
             else
             {
-                Console.WriteLine("No existen usuarios registrados");
+                Console.WriteLine("No users to display");
+                
             }
-
-
+            Console.ReadKey();
+            BankMain();
         }
-
-
 
     }
 }
