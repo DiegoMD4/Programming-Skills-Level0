@@ -42,14 +42,16 @@ namespace Level_0.Mainthread
         //overload of showMenu for using in clases 
         public static int ShowMenu(string [] MenuOptions, ConsoleColor Color)
         {
-            Console.CursorVisible = true;
+
+            Console.CursorVisible = false;
             ConsoleKeyInfo keyInfo;
             int SelectedOption = 0;
 
             do
             {
                 Console.Clear();
-                Console.WriteLine("Select an Option (UP or Down then press ENTER): ");
+                Console.WriteLine("Select an option (PRESS UP or Down to select one then press ENTER): ");
+
 
                 for (int item = 0; item < MenuOptions.Length; item++)
                 {
