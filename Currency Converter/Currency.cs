@@ -5,7 +5,7 @@ namespace Level_0.Currency_Converter
 {
     class Currency : Program
     {
-        static string[] currencyToConvert = new string[2];
+        
         static string[] currencyTypes = { "CLP", "ARG", "USD", "EUR", "TRY", "GBP" };
         static double[] CLP = { 1, 0.91, 0.00104374, 0.0009828, 0.03313, 0.0008425 };
         static double[] ARG = { 1.0989, 1, 0.001147, 0.00108, 0.0363, 0.000924 };
@@ -20,13 +20,10 @@ namespace Level_0.Currency_Converter
             switch (ShowMenu(CurrencyMenu, ConsoleColor.Blue))
             {
 
-                case 0:Console.Clear();
+                case 0:
+                    Console.WriteLine("Wich is your currency? :");
                     ChooseCurrency();
                     break;
-                //case 1:
-                //    Console.WriteLine("Vera la comision que va a ganar:");
-                //    Environment.Exit(0);
-                //    break;
                  default: Console.WriteLine("EXIT");
                     ProgramMenu();
                     break;
@@ -36,64 +33,83 @@ namespace Level_0.Currency_Converter
 
         public static void ChooseCurrency()
         {
-            Console.WriteLine("Available currencys");
+            Console.WriteLine($"Which is your currency? :  ");
+            Console.ReadKey();
 
-            for (int i = 0; i < currencyTypes.Length-1; i++)
+            switch (ShowMenu(currencyTypes, ConsoleColor.Blue))
             {
-                Console.WriteLine($"-{currencyTypes[i]}");
+                case 0:
+                    Convertion(CLP, 0);
+                    break;
+                case 1:
+                    Console.WriteLine($"Choose a currency to convert to:  ");
+                    Console.ReadKey();
+                    Convertion(ARG, 1);
+                    break;
+                case 2:
+                    Console.WriteLine($"Choose a currency to convert to:  ");
+                    Console.ReadKey();
+                    Convertion(USD ,2);
+                    break;
+                case 3:
+                    Console.WriteLine($"Choose a currency to convert to:  ");
+                    Console.ReadKey();
+                    Convertion(EUR, 3);
+
+                    break;
+                case 4:
+                    Console.WriteLine($"Choose a currency to convert to: ");
+                    Console.ReadKey();
+                    Convertion(TRY, 4);
+
+                    break;
+                case 5:
+                    Console.WriteLine($"Choose a currency to convert to: ");
+                    Console.ReadKey();
+                    Convertion(GBP, 5);
+
+                    break;
+                default:
+                    Console.WriteLine("Unavailable currency or you it write wrong, please try again...");
+                    Console.ReadKey();
+                    break;
             }
 
-            Console.WriteLine("Choose your currency: ");
-            currencyToConvert[0] = Console.ReadLine();
-            Console.WriteLine("Now choose the currency you want to convert for:");
-            currencyToConvert[1] = Console.ReadLine();
-
-            Console.Clear();
-            Console.WriteLine($"These currencys you are going to convert: {currencyToConvert[0]} to {currencyToConvert[1]}" +
-                $" ... yes / no?");
-            var option = Console.ReadLine();
-            if(option == "no")
-            {
-                CurrencyMain();
-            }
-
-            Convertion(currencyToConvert[0], currencyToConvert[1]);
         }
 
-        static void Convertion(string firstCurrency, string secondCurrency)
+        static void Convertion(double[] convertionRates, int firstCurrency)
         {
-            switch (firstCurrency)
+            switch (ShowMenu(currencyTypes, ConsoleColor.Blue))
             {
-                case "CLP": Console.WriteLine($"Converting CLP to:  {secondCurrency}");
-                    chileanPesosTo(secondCurrency);
+                case 0:
+                    ConvertingTo(convertionRates, firstCurrency, 0);
                     Console.ReadKey();
                     break;
-                case "ARG": Console.WriteLine($"Converting ARG to:  {secondCurrency}");
-                    argentinianPesosTo(secondCurrency);
+                case 1:
+                    ConvertingTo(convertionRates, firstCurrency, 1);
                     Console.ReadKey();
                     break;
-                case "USD": Console.WriteLine($"Converting USD to:  {secondCurrency}");
-                    usDollarsTo(secondCurrency);
+                case 2:
+                    ConvertingTo(convertionRates, firstCurrency, 2);
                     Console.ReadKey();
                     break;
-                case "EUR": Console.WriteLine($"Converting EUR to:  {secondCurrency}");
-                    euroTo(secondCurrency);
+                case 3:
+                    ConvertingTo(convertionRates, firstCurrency, 3);
                     Console.ReadKey();
                     break;
-                case "TRY": Console.WriteLine($"Converting TRY to:  {secondCurrency}");
-                    turkishTo(secondCurrency);
+                case 4: 
+                    ConvertingTo(convertionRates, firstCurrency, 4);
                     Console.ReadKey();
                     break;
-                case"GBP": Console.WriteLine($"Converting GBP to:  {secondCurrency}");
-                    britishPoundTo(secondCurrency);
+                case 5: 
+                    ConvertingTo(convertionRates, firstCurrency, 5);
                     Console.ReadKey();
                     break;
                 default: Console.WriteLine("Unavailable currency or you it write wrong, please try again...");
                     Console.ReadKey();
-                    Convertion(firstCurrency, secondCurrency);
                     break;
             }
-            Console.WriteLine("do you want still operating... yes/no? ");
+            Console.WriteLine("Do you want still operating... yes/no? ");
             var option = Console.ReadLine();
             if (option == "yes")
             {
@@ -106,134 +122,39 @@ namespace Level_0.Currency_Converter
         }
 
 
-        static void chileanPesosTo(string secondCurrency)
+        static void ConvertingTo(double[] convertionRates, int firstValue, int secondValue)
         {
+            Console.WriteLine($"Converting: {currencyTypes[firstValue]} -> {currencyTypes[secondValue]}");
+            
             Console.WriteLine("Set the amount you want to convert: ");
-            double currentValue = Convert.ToDouble(Console.ReadLine());
-            double newValue;
-            string newCurrencyType = "CLP";
-            int position = 0;
-            for (int i = 0; i < currencyTypes.Length; i++)
+            double newValue = Convert.ToDouble(Console.ReadLine());
+            
+            newValue *= convertionRates[secondValue];
+
+            string newCurrencyType = currencyTypes[secondValue];
+            Console.WriteLine($"CONVERTION DONE!: {newValue} {newCurrencyType}");
+            Console.WriteLine("do you want retire your founds... yes/no? ");
+            var option = Console.ReadLine();
+            if (option == "yes")
             {
-                if (secondCurrency == currencyTypes[i])
-                {
-                    position = i;
-                    newCurrencyType = currencyTypes[i];
-                }
-                
+                commisionCharge(newValue, newCurrencyType);
+
+            }
+            else
+            {
+                Environment.Exit(0);
             }
 
-            newValue = currentValue * CLP[position];
 
-            Console.WriteLine($"CONVERTION DONE!: {newValue} {newCurrencyType} ");
         }
-        static void argentinianPesosTo(string secondCurrency)
+        
+
+        static void commisionCharge(double value , string currencyType)
         {
-            Console.WriteLine("Set the amount you want to convert: ");
-            double currentValue = Convert.ToDouble(Console.ReadLine());
-            double newValue;
-            string newCurrencyType = "CLP";
-            int position = 0;
-            for (int i = 0; i < currencyTypes.Length; i++)
-            {
-                if (secondCurrency == currencyTypes[i])
-                {
-                    position = i;
-                    newCurrencyType = currencyTypes[i];
-                }
-                
-            }
-
-            newValue = currentValue * ARG[position];
-
-            Console.WriteLine($"CONVERTION DONE!: {newValue} {newCurrencyType} ");
-        }
-        static void usDollarsTo(string secondCurrency)
-        {
-            Console.WriteLine("Set the amount you want to convert: ");
-            double currentValue = Convert.ToDouble(Console.ReadLine());
-            double newValue;
-            string newCurrencyType = "CLP";
-            int position = 0;
-            for (int i = 0; i < currencyTypes.Length; i++)
-            {
-                if (secondCurrency == currencyTypes[i])
-                {
-                    position = i;
-                    newCurrencyType = currencyTypes[i];
-                }
-
-            }
-
-            newValue = currentValue * USD[position];
-
-            Console.WriteLine($"CONVERTION DONE!: {newValue} {newCurrencyType} ");
-        }
-
-        static void euroTo(string secondCurrency)
-        {
-            Console.WriteLine("Set the amount you want to convert: ");
-            double currentValue = Convert.ToDouble(Console.ReadLine());
-            double newValue;
-            string newCurrencyType = "CLP";
-            int position = 0;
-            for (int i = 0; i < currencyTypes.Length; i++)
-            {
-                if (secondCurrency == currencyTypes[i])
-                {
-                    position = i;
-                    newCurrencyType = currencyTypes[i];
-                }
-
-            }
-
-            newValue = currentValue * EUR[position];
-
-            Console.WriteLine($"CONVERTION DONE!: {newValue} {newCurrencyType} ");
-        }
-
-        static void turkishTo(string secondCurrency)
-        {
-            Console.WriteLine("Set the amount you want to convert: ");
-            double currentValue = Convert.ToDouble(Console.ReadLine());
-            double newValue;
-            string newCurrencyType = "CLP";
-            int position = 0;
-            for (int i = 0; i < currencyTypes.Length; i++)
-            {
-                if (secondCurrency == currencyTypes[i])
-                {
-                    position = i;
-                    newCurrencyType = currencyTypes[i];
-                }
-
-            }
-
-            newValue = currentValue * TRY[position];
-
-            Console.WriteLine($"CONVERTION DONE!: {newValue} {newCurrencyType} ");
-        }
-
-        static void britishPoundTo(string secondCurrency)
-        {
-            Console.WriteLine("Set the amount you want to convert: ");
-            double currentValue = Convert.ToDouble(Console.ReadLine());
-            double newValue;
-            string newCurrencyType = "CLP";
-            int position = 0;
-            for (int i = 0; i < currencyTypes.Length; i++)
-            {
-                if (secondCurrency == currencyTypes[i])
-                {
-                    position = i;
-                    newCurrencyType = currencyTypes[i];
-                }
-
-            }
-
-            newValue = currentValue * GBP[position];
-
-            Console.WriteLine($"CONVERTION DONE!: {newValue} {newCurrencyType} ");
+            var valueAfterCommision = value - (value * 0.01);
+            Console.WriteLine($"The system charges a 1% commision of convertion," +
+                $" your found now is: {valueAfterCommision} {currencyType} ");
+            
         }
     }
 
