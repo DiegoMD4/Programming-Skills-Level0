@@ -2,7 +2,7 @@
 
 namespace Level_0.Banking_System
 {
-    class Usuario
+    class Usuario:Bank
     {
 
         public string Nombre { get; set; }
@@ -18,90 +18,89 @@ namespace Level_0.Banking_System
 
         }
 
-        public void VerSaldo()
+        public void CheckBalance()
         {
-
-            Console.WriteLine($"Saldo actual: {Saldo:C}");
-
+            Console.WriteLine($"Current balance: {Saldo:C}");            
         }
-        public void AgregarSaldo()
+        public void AddFounds()
         {
-            Console.WriteLine("¿Cuántos fondos desea agregar?");
+            Console.Write("How much do you want to add?:  ");
             decimal nuevoSaldo = Convert.ToDecimal(Console.ReadLine());
             Saldo += nuevoSaldo;
         }
-        public void AgregarSaldo(decimal nuevoSaldo)
+        public void AddFounds(decimal nuevoSaldo)
         {
             Saldo += nuevoSaldo;
         }
-        public void RetirarSaldo()
+        public void RetireFounds()
         {
-            Console.WriteLine("¿Cuántos fondos desea retirar?");
+            Console.Write("Amount to retire?: ");
             decimal retiroSaldo = Convert.ToDecimal(Console.ReadLine());
             Saldo -= retiroSaldo;
         }
-        public static void TransferirSaldo(Usuario usuarioActual, List<Usuario> usuarios)
+        public static void TransferFounds(Usuario usuarioActual, List<Usuario> usuarios)
         {
 
-            Console.Write("A quien desea enviar dinero: ");
+            Console.Write("Wich user do you want to transfer: ");
             string nombreReceptor = Console.ReadLine();
             Usuario usuarioReceptor = usuarios.Find(u => u.Nombre == nombreReceptor);
 
             if (usuarioReceptor == null)
             {
-                Console.WriteLine("Ese usuario no existe");
+                Console.WriteLine("The users you want to send does not exits. PRESS ANY BUTTON TO CONTINUE");
+                Console.ReadKey();
+
+                UsersMenu(usuarioActual, usuarios);
 
             }
 
-            Console.WriteLine("Cuanto dinero desea enviar a: " + usuarioReceptor.Nombre);
+            Console.WriteLine("Select an amount to transfer " + usuarioReceptor.Nombre);
             decimal enviarSaldo = Convert.ToDecimal(Console.ReadLine());
-            usuarioReceptor.AgregarSaldo(enviarSaldo);
+            usuarioReceptor.AddFounds(enviarSaldo);
 
             usuarioActual.Saldo -= enviarSaldo;
 
-            Console.WriteLine($"Has enviado con éxito a: {usuarioReceptor.Nombre} la cantidad de: {enviarSaldo}");
-            usuarioActual.VerSaldo();
+            Console.WriteLine($"Transfer successfully to: {usuarioReceptor.Nombre} the amount of: {enviarSaldo}");
+            usuarioActual.CheckBalance();
         }
 
-        public static void MostrarMenuOperaciones(Usuario usuarioActual, List<Usuario> usuarios)
+        public static void UsersMenu(Usuario usuarioActual, List<Usuario> usuarios)
         {
-            while (true)
+            string[] UserOptions = { "Check balance", "Add Founds", "Retire", "Transfer Money", "Log out" };
+
+            switch (ShowMenu(UserOptions, ConsoleColor.Red))
             {
-                Console.Clear();
-                Console.WriteLine("----- Menú de Operaciones -----");
-                Console.WriteLine("1. Ver saldo");
-                Console.WriteLine("2. Agregar dinero");
-                Console.WriteLine("3. Retirar dinero");
-                Console.WriteLine("4. Transferir");
-                Console.WriteLine("5. Cerrar sesión");
-                Console.WriteLine("Seleccione una opción: ");
+                case 0:
+                    usuarioActual.CheckBalance();
+                    Console.ReadKey();
+                    UsersMenu(usuarioActual, usuarios);
+                    break;
+                case 1:
+                    usuarioActual.AddFounds();
+                    //Console.ReadKey();
+                    UsersMenu(usuarioActual, usuarios);
 
-                string opcion = Console.ReadLine();
+                    break;
+                case 2:
+                    usuarioActual.RetireFounds();
+                    //Console.ReadKey();
+                    UsersMenu(usuarioActual, usuarios);
 
-                switch (opcion)
-                {
-                    case "1":
-                        usuarioActual.VerSaldo();
-                        Console.ReadKey();
-                        break;
-                    case "2":
-                        usuarioActual.AgregarSaldo();
-                        break;
-                    case "3":
-                        usuarioActual.RetirarSaldo();
-                        break;
-                    case "4":
-                        TransferirSaldo(usuarioActual, usuarios);
-                        return;
-                    case "5":
-                        Program.ShowMenu();
-                        return;
-                    default:
-                        Console.WriteLine("Opción no válida. Intente nuevamente.");
-                        break;
+                    break;
+                case 3:
+                    TransferFounds(usuarioActual, usuarios);
+                    Console.ReadKey();
+                    UsersMenu(usuarioActual, usuarios);
+                    return;
+                case 4:
+                    BankMain();
+                    return;
+                default:
+                    Console.WriteLine("Non valid option please try again...");
+                    break;
 
-                }
             }
+            
         }
-    }
+     }
 }
