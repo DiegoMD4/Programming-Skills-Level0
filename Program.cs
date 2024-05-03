@@ -23,7 +23,8 @@ namespace Level_0.Mainthread
                     Currency.CurrencyMain();
                     break;
                 case 2:
-                    University.UniversityMain();
+                    University university = new University();
+                    university.UniversityMain();
                     break;
                 case 3:
                     Console.WriteLine("Online Shipment");

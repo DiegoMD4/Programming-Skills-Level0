@@ -10,7 +10,7 @@ namespace Level_0.University_Enrollment
 
         static List <Students> students = new List<Students>();
 
-        public static void UniversityMain()
+        public void UniversityMain()
         {            
             Menu();
         }
@@ -38,35 +38,36 @@ namespace Level_0.University_Enrollment
 
         public static void Login(int strikes)
         {
-            Console.CursorVisible = true;
-            Console.WriteLine("Please enter your username:");
-            string username = Console.ReadLine();
-            Console.WriteLine("Please enter your password:");
-            string password = Console.ReadLine();
-            
-            Students findedStudent = students.Find(element => element.Username == username && element.Password == password);
-
             if (strikes < 3)
             {
+                Console.CursorVisible = true;
+                Console.WriteLine("Please enter your username:");
+                string username = Console.ReadLine();
+                Console.WriteLine("Please enter your password:");
+                string password = Console.ReadLine();
+
+                Students findedStudent = students.Find(element => element.Username == username && element.Password == password);
+
                 if (findedStudent != null)
                 {
-                    Students.StudentsMain();
-                    
+                    Students.StudentsMain(findedStudent, students);
                 }
                 else
                 {
-                    Console.WriteLine($"Wrong username or password tried again... number of tries: {3-strikes} \n");
+                    Console.WriteLine($"Wrong username or password tried again... number of tries: {3 - strikes} \n");
                     Login(++strikes);
                 }
             }
-            Console.Beep();
-            Console.CursorVisible = false;
-            Console.WriteLine("Tried to log in 3 times without success. The system is now blocked for 10 seconds.");
-            Thread.Sleep(10000);
-            Console.Beep();
-
-            Menu();
+            else
+            {
+                Console.Beep();
+                Console.CursorVisible = false;
+                Console.WriteLine("Tried to log in 3 times without success. The system is now blocked for 10 seconds.");
+                Thread.Sleep(5000); //10000 = 10s
+                Menu();
+            }
         }
+
 
         public static void Register()
         {
@@ -76,7 +77,7 @@ namespace Level_0.University_Enrollment
             string password = Console.ReadLine();
 
             Students registeredStudent = new Students();
-            registeredStudent.Username = $"@{username}";
+            registeredStudent.Username = $"{username}";
             registeredStudent.Password = password;
 
             students.Add( registeredStudent );
@@ -99,7 +100,9 @@ namespace Level_0.University_Enrollment
             }
             else
             {
-                Console.WriteLine("No users to display");
+                Console.WriteLine("No users to display, press enter to go to the menu");
+                Console.ReadKey();
+                Menu();
 
             }
         }
