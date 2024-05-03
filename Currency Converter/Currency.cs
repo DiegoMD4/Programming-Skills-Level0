@@ -16,8 +16,9 @@ namespace Level_0.Currency_Converter
 
         public static void CurrencyMain()
         {
+            string Message = "Select an option (PRESS UP or Down to select one then press ENTER): ";
             string[] CurrencyMenu = { "Convert your currency", "Exit"};
-            switch (ShowMenu(CurrencyMenu, ConsoleColor.Blue))
+            switch (ShowMenu(CurrencyMenu, ConsoleColor.Blue, Message))
             {
 
                 case 0:
@@ -33,39 +34,33 @@ namespace Level_0.Currency_Converter
 
         public static void ChooseCurrency()
         {
-            Console.WriteLine($"Which is your currency? :  ");
-            Console.ReadKey();
+            string Message = "Wich is your currency? (PRESS UP or Down to select one then press ENTER): ";
 
-            switch (ShowMenu(currencyTypes, ConsoleColor.Blue))
+            switch (ShowMenu(currencyTypes, ConsoleColor.Blue, Message))
             {
                 case 0:
                     Convertion(CLP, 0);
                     break;
                 case 1:
-                    Console.WriteLine($"Choose a currency to convert to:  ");
-                    Console.ReadKey();
+                    
                     Convertion(ARG, 1);
                     break;
                 case 2:
-                    Console.WriteLine($"Choose a currency to convert to:  ");
-                    Console.ReadKey();
+                    
                     Convertion(USD ,2);
                     break;
                 case 3:
-                    Console.WriteLine($"Choose a currency to convert to:  ");
-                    Console.ReadKey();
+                    
                     Convertion(EUR, 3);
 
                     break;
                 case 4:
-                    Console.WriteLine($"Choose a currency to convert to: ");
-                    Console.ReadKey();
+                    
                     Convertion(TRY, 4);
 
                     break;
                 case 5:
-                    Console.WriteLine($"Choose a currency to convert to: ");
-                    Console.ReadKey();
+                    
                     Convertion(GBP, 5);
 
                     break;
@@ -79,7 +74,8 @@ namespace Level_0.Currency_Converter
 
         static void Convertion(double[] convertionRates, int firstCurrency)
         {
-            switch (ShowMenu(currencyTypes, ConsoleColor.Blue))
+            string Message = "Select a currency to convert to: (PRESS UP or Down to select one then press ENTER): ";
+            switch (ShowMenu(currencyTypes, ConsoleColor.Blue, Message))
             {
                 case 0:
                     ConvertingTo(convertionRates, firstCurrency, 0);

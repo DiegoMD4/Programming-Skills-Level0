@@ -2,7 +2,7 @@
 
 namespace Level_0.Banking_System
 {
-    class Usuario:Bank
+    class Users:Bank
     {
 
         public string Nombre { get; set; }
@@ -10,7 +10,7 @@ namespace Level_0.Banking_System
 
         public decimal Saldo { get; private set; }
 
-        public Usuario(string nombre, string contrasena)
+        public Users(string nombre, string contrasena)
         {
             Nombre = nombre;
             Contrasena = contrasena;
@@ -38,12 +38,12 @@ namespace Level_0.Banking_System
             decimal retiroSaldo = Convert.ToDecimal(Console.ReadLine());
             Saldo -= retiroSaldo;
         }
-        public static void TransferFounds(Usuario usuarioActual, List<Usuario> usuarios)
+        public static void TransferFounds(Users usuarioActual, List<Users> usuarios)
         {
 
             Console.Write("Wich user do you want to transfer: ");
             string nombreReceptor = Console.ReadLine();
-            Usuario usuarioReceptor = usuarios.Find(u => u.Nombre == nombreReceptor);
+            Users usuarioReceptor = usuarios.Find(u => u.Nombre == nombreReceptor);
 
             if (usuarioReceptor == null)
             {
@@ -64,11 +64,12 @@ namespace Level_0.Banking_System
             usuarioActual.CheckBalance();
         }
 
-        public static void UsersMenu(Usuario usuarioActual, List<Usuario> usuarios)
+        public static void UsersMenu(Users usuarioActual, List<Users> usuarios)
         {
+            string Message = "What action do you want to do? (PRESS UP or Down to select one then press ENTER): ";
             string[] UserOptions = { "Check balance", "Add Founds", "Retire", "Transfer Money", "Log out" };
 
-            switch (ShowMenu(UserOptions, ConsoleColor.Red))
+            switch (ShowMenu(UserOptions, ConsoleColor.Red, Message))
             {
                 case 0:
                     usuarioActual.CheckBalance();
@@ -96,7 +97,7 @@ namespace Level_0.Banking_System
                     BankMain();
                     return;
                 default:
-                    Console.WriteLine("Non valid option please try again...");
+                    Console.WriteLine("Not a valid option please try again...");
                     break;
 
             }

@@ -1,5 +1,6 @@
 ﻿using Level_0.Banking_System;
 using Level_0.Currency_Converter;
+using Level_0.University_Enrollment;
 
 namespace Level_0.Mainthread
 {
@@ -11,8 +12,9 @@ namespace Level_0.Mainthread
         }
 
         public static void ProgramMenu() {
+            string Message = "Select a PROGRAM to start up (PRESS UP or Down to select one then press ENTER): ";
             string[] MenuOptions = { "Banking system", "Currency converter", "University enrollment", "Online shipment", "Finance management", "Exit" };
-            switch (ShowMenu(MenuOptions, ConsoleColor.Gray))
+            switch (ShowMenu(MenuOptions, ConsoleColor.Gray, Message))
             {
                 case 0:
                     Bank.BankMain();
@@ -21,7 +23,7 @@ namespace Level_0.Mainthread
                     Currency.CurrencyMain();
                     break;
                 case 2:
-                    Console.WriteLine("University enrollment");
+                    University.UniversityMain();
                     break;
                 case 3:
                     Console.WriteLine("Online Shipment");
@@ -40,7 +42,7 @@ namespace Level_0.Mainthread
         }
 
         //overload of showMenu for using in clases 
-        public static int ShowMenu(string [] MenuOptions, ConsoleColor Color)
+        public static int ShowMenu(string [] MenuOptions, ConsoleColor Color, string Message)
         {
 
             Console.CursorVisible = false;
@@ -50,7 +52,7 @@ namespace Level_0.Mainthread
             do
             {
                 Console.Clear();
-                Console.WriteLine("Select an option (PRESS UP or Down to select one then press ENTER): ");
+                Console.WriteLine(Message);
 
 
                 for (int item = 0; item < MenuOptions.Length; item++)

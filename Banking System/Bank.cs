@@ -5,13 +5,14 @@ namespace Level_0.Banking_System
     class Bank: Program
     {
 
-        static List<Usuario> usuarios = new List<Usuario>();
-        static Usuario usuarioActual;
+        static List<Users> usuarios = new List<Users>();
+        
         public static void BankMain()
         {
+            string Message = "Select an option (PRESS UP or Down to select one then press ENTER): ";
             string[] BankMenu = { "Register New User", "Log In", "Display Users", "Exit to Programs menu" };
 
-            switch (ShowMenu(BankMenu, ConsoleColor.Red))
+            switch (ShowMenu(BankMenu, ConsoleColor.Red, Message))
             {
                 case 0:
                     RegisterNewUser();
@@ -40,10 +41,10 @@ namespace Level_0.Banking_System
             Console.WriteLine("Choose your password: ");
             string? contrasena = Console.ReadLine();
 
-            Usuario nuevoUsuario = new Usuario(nombre, contrasena);
+            Users nuevoUsuario = new Users(nombre, contrasena);
             usuarios.Add(nuevoUsuario);
 
-            Console.WriteLine("Succesfully registered!");
+            Console.WriteLine(" Successfully registered!");
             Console.ReadKey();
             BankMain();
         }
@@ -56,13 +57,13 @@ namespace Level_0.Banking_System
             Console.Write("Password: ");
             string contrasena = Console.ReadLine();
 
-            Usuario usuario = usuarios.Find(u => u.Nombre == nombre && u.Contrasena == contrasena);
+            Users usuario = usuarios.Find(u => u.Nombre == nombre && u.Contrasena == contrasena);
 
             if (usuario != null)
             {
                 Console.WriteLine($"Welcome to your bank account: {usuario.Nombre}");
-                usuarioActual = usuario;
-                Usuario.UsersMenu(usuario, usuarios);
+                
+                Users.UsersMenu(usuario, usuarios);
             }
             else
             {
