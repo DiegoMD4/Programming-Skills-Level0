@@ -29,7 +29,7 @@ namespace Level_0.Online_Shipping
                     LogIn(0);
                     break;
                 case 1:
-                    Console.WriteLine("Closing session and system");
+                    ProgramMenu();
                     break;
                 default:
                     break;

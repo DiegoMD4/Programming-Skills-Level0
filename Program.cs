@@ -2,7 +2,7 @@
 using Level_0.Currency_Converter;
 using Level_0.University_Enrollment;
 using Level_0.Online_Shipping;
-
+using Level_0.Financial_Management;
 namespace Level_0.Mainthread
 {
     class Program
@@ -30,7 +30,7 @@ namespace Level_0.Mainthread
                     Shipping.ShippingMain();
                     break;
                 case 4:
-                    Console.WriteLine("Financial managment");
+                    Financial.FinancialMain();
                     break;
                 case 5:
                     Console.WriteLine("Closing Program System");
