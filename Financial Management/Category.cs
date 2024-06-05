@@ -59,7 +59,7 @@ namespace Level_0.Financial_Management
             TotalExpenses = TotalExpenses + input;
 
             Expenses += input;
-            Console.WriteLine($"Accumulated in the category: ${Expenses}");
+            Console.WriteLine($"Accumulated by the time in {CategoryName}: ${Expenses}");
             
             Console.ReadKey();
             ListCategories();
